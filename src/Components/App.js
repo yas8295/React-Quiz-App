@@ -76,7 +76,7 @@ export default function App() {
     function questions() {
       setTimeout(async function () {
         try {
-          const res = await fetch("http://localhost:8000/questions");
+          const res = await fetch("https://localhost:8000/questions");
           const data = await res.json();
           setStates({ type: "data", payload: data });
         } catch (error) {
