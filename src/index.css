@@ -1,0 +1,129 @@
+body {
+  background-color: #343a40;
+  color: #ffffff;
+  font-family: "Archivo", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  color: #000;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #4ca8c1ad;
+  border-radius: 16%;
+}
+
+.start {
+  border: none;
+  background-color: #505860;
+  border-radius: 40px;
+  font-size: 20px;
+  transition: 0.5s;
+}
+
+.start:hover {
+  background-color: #61dafbad;
+}
+
+.loader.error {
+  color: #ce4d4d;
+}
+
+.loader {
+  color: #fff;
+  font-family: Consolas, Menlo, Monaco, monospace;
+  font-weight: bold;
+  font-size: 78px;
+  opacity: 0.8;
+}
+.loader:before {
+  content: "{";
+  display: inline-block;
+  animation: pulse 0.4s alternate infinite ease-in-out;
+}
+.loader:after {
+  content: "}";
+  display: inline-block;
+  animation: pulse 0.4s 0.3s alternate infinite ease-in-out;
+}
+
+@keyframes pulse {
+  to {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+}
+
+.anserws button {
+  border: none;
+  background-color: #505860;
+  border-radius: 40px;
+  font-weight: 300;
+  text-align: left;
+  font-size: 20px;
+  transition: 0.5s;
+}
+
+.anserws button:hover {
+  background-color: #61dafbad;
+  margin-left: 25px !important;
+}
+
+.anserws button:disabled {
+  cursor: not-allowed;
+  margin: 0 !important;
+  background-color: #505860;
+}
+
+.anserws button.correct {
+  background-color: #61dafbad;
+}
+
+.anserws button.wrong {
+  background-color: #d53351ad;
+}
+
+.anserws button.answer {
+  margin-left: 25px !important;
+}
+
+.bar {
+  height: 10px;
+  width: 5px;
+  background-color: rgba(255, 255, 255, 0.787);
+  max-width: 490px;
+  border-radius: 150px;
+  overflow: hidden;
+}
+
+.progress {
+  border-radius: 150px;
+  transition: 0.5s;
+  height: 10px;
+  background-color: #37b0d1d6;
+  top: 0;
+  left: 0;
+}
+
+.timer {
+  border: 3px solid #7eabb8d6;
+  background-color: transparent;
+  border-radius: 40px;
+  font-weight: 300;
+  font-size: 20px;
+  cursor: auto;
+}
+.next {
+  border: none;
+  background-color: #505860;
+  border-radius: 40px;
+  font-weight: 300;
+  text-align: left;
+  font-size: 20px;
+  transition: 0.5s;
+}
+.next:hover {
+  background-color: #61dafbad;
+}
