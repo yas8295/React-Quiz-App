@@ -55,7 +55,7 @@ export default function Questions({ questions, index, answer, setStates }) {
         >
           <button className="timer py-4 px-5">
             0{seconds < 0 ? setminuts((m) => m - 1) : minuts}:
-            {seconds < 10 ? (seconds < 0 ? setSeconds(5) : "0") : null}
+            {seconds < 10 ? (seconds < 0 ? setSeconds(59) : "0") : null}
             {seconds}
           </button>
           {answer || answer === 0 ? (
