@@ -1,22 +1,20 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useState } from "react";
 
-export default function Questions({
-  questions,
-  index,
-  answer,
-  setStates,
-  seconds,
-  minuts,
-}) {
+export default function Questions({ questions, index, answer, setStates }) {
+  const [seconds, setSeconds] = useState(59);
+  const [minuts, setminuts] = useState(3);
+
+  const finish = minuts < 0;
+
+  if (finish) {
+    setStates({ type: "timer", payload: "finish" });
+  }
+
   useEffect(() => {
-    const timer = function () {
-      setInterval(() => {
-        setStates({ type: "timer" });
-        console.log(44);
-      }, 1000);
-    };
-    timer();
-  }, [setStates]);
+    setInterval(() => {
+      setSeconds((s) => s - 0.5);
+    }, 1000);
+  }, [setSeconds]);
 
   return (
     <div
@@ -56,7 +54,8 @@ export default function Questions({
           style={{ maxWidth: "500px" }}
         >
           <button className="timer py-4 px-5">
-            0{minuts}:{seconds < 10 ? "0" : null}
+            0{seconds < 0 ? setminuts((m) => m - 1) : minuts}:
+            {seconds < 10 ? (seconds < 0 ? setSeconds(5) : "0") : null}
             {seconds}
           </button>
           {answer || answer === 0 ? (

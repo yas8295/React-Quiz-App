@@ -37,8 +37,7 @@ export default function Content({
           index={index}
           answer={answer}
           setStates={setStates}
-          seconds={seconds}
-          minuts={minuts}
+          
         ></Questions>
       )}
       {status === "finish" && (
