@@ -12,7 +12,7 @@ export default function Questions({ questions, index, answer, setStates }) {
 
   useEffect(() => {
     setInterval(() => {
-      setSeconds((s) => s - 0.5);
+      setSeconds((s) => s - 1);
     }, 1000);
   }, [setSeconds]);
 
