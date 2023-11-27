@@ -1,6 +1,12 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, Children } from "react";
 import Header from "./Header";
 import Content from "./Content";
+import Error from "./Error";
+import Finish from "./Finish";
+import Loading from "./Loading";
+import Progress from "./Progress";
+import Questions from "./Questions";
+import Start from "./Start";
 
 const initialStates = {
   questions: [],
@@ -81,15 +87,36 @@ export default function App() {
   return (
     <div className="py-5">
       <Header></Header>
-      <Content
-        status={status}
-        setStates={setStates}
-        questions={questions}
-        index={index}
-        answer={answer}
-        points={points}
-        progress={progress}
-      ></Content>
+      <Content children={Children}>
+        {status === "loading" && <Loading></Loading>}
+        {status === "error" && <Error></Error>}
+        {status === "start" && (
+          <Start setStates={setStates} questions={questions}></Start>
+        )}
+        {status === "ready" && (
+          <Progress
+            questions={questions}
+            progress={progress}
+            points={points}
+            index={index}
+          ></Progress>
+        )}
+        {status === "ready" && (
+          <Questions
+            questions={questions}
+            index={index}
+            answer={answer}
+            setStates={setStates}
+          ></Questions>
+        )}
+        {status === "finish" && (
+          <Finish
+            questions={questions}
+            setStates={setStates}
+            points={points}
+          ></Finish>
+        )}
+      </Content>
     </div>
   );
 }
