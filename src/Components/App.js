@@ -76,7 +76,9 @@ export default function App() {
     function questions() {
       setTimeout(async function () {
         try {
-          const res = await fetch("http://localhost:8000/questions");
+          const res = await fetch(
+            "https://my-json-server.typicode.com/yas8295/demo/questions"
+          );
           const data = await res.json();
           setStates({ type: "data", payload: data });
         } catch (error) {
