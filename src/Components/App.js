@@ -1,6 +1,12 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, Children } from "react";
 import Header from "./Header";
 import Content from "./Content";
+import Error from "./Error";
+import Finish from "./Finish";
+import Loading from "./Loading";
+import Progress from "./Progress";
+import Questions from "./Questions";
+import Start from "./Start";
 
 const initialStates = {
   questions: [],
@@ -9,8 +15,6 @@ const initialStates = {
   progress: 0,
   answer: null,
   points: 0,
-  seconds: 59,
-  minuts: 7,
 };
 
 function statesFun(states, action) {
@@ -51,32 +55,25 @@ function statesFun(states, action) {
         progress: 0,
         answer: null,
         points: 0,
-        seconds: 59,
-        minuts: 7,
       };
     case "timer":
-      return {
-        ...states,
-        seconds: states.seconds < 0 ? 59 : states.seconds--,
-        minuts: states.seconds < 0 ? states.minuts-- : states.minuts,
-        status: states.minuts < -1 ? "finish" : states.status,
-      };
+      return { ...states, status: action.payload };
     default:
       return "somthing Wrong";
   }
 }
 
 export default function App() {
-  const [
-    { status, questions, index, answer, points, progress, seconds, minuts },
-    setStates,
-  ] = useReducer(statesFun, initialStates);
+  const [{ status, questions, index, answer, points, progress }, setStates] =
+    useReducer(statesFun, initialStates);
 
   useEffect(function () {
     function questions() {
       setTimeout(async function () {
         try {
-          const res = await fetch("https://localhost:8000/questions");
+          const res = await fetch(
+            "https://my-json-server.typicode.com/yas8295/demo/questions"
+          );
           const data = await res.json();
           setStates({ type: "data", payload: data });
         } catch (error) {
@@ -90,17 +87,36 @@ export default function App() {
   return (
     <div className="py-5">
       <Header></Header>
-      <Content
-        status={status}
-        setStates={setStates}
-        questions={questions}
-        index={index}
-        answer={answer}
-        points={points}
-        progress={progress}
-        seconds={seconds}
-        minuts={minuts}
-      ></Content>
+      <Content children={Children}>
+        {status === "loading" && <Loading></Loading>}
+        {status === "error" && <Error></Error>}
+        {status === "start" && (
+          <Start setStates={setStates} questions={questions}></Start>
+        )}
+        {status === "ready" && (
+          <Progress
+            questions={questions}
+            progress={progress}
+            points={points}
+            index={index}
+          ></Progress>
+        )}
+        {status === "ready" && (
+          <Questions
+            questions={questions}
+            index={index}
+            answer={answer}
+            setStates={setStates}
+          ></Questions>
+        )}
+        {status === "finish" && (
+          <Finish
+            questions={questions}
+            setStates={setStates}
+            points={points}
+          ></Finish>
+        )}
+      </Content>
     </div>
   );
 }
