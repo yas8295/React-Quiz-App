@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect, useReducer } from "react";
 
 export default function Questions({
   questions,
@@ -9,9 +9,13 @@ export default function Questions({
   minuts,
 }) {
   useEffect(() => {
-    setInterval(() => {
-      setStates({ type: "timer" });
-    }, 1000);
+    const timer = function () {
+      setInterval(() => {
+        setStates({ type: "timer" });
+        console.log(44);
+      }, 1000);
+    };
+    timer();
   }, [setStates]);
 
   return (
