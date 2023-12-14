@@ -8,14 +8,6 @@ import Progress from "./Progress";
 import Questions from "./Questions";
 import Start from "./Start";
 
-window.addEventListener("load", function () {
-  this.document.querySelector(".header img").style.opacity = 1;
-  this.document.querySelector(".header img").style.scale = 1;
-  this.document.querySelector(".header img").style.rotate = "0deg";
-  this.document.querySelector(".header h1").style.opacity = 1;
-  this.document.querySelector(".header h1").style.scale = 1;
-});
-
 const initialStates = {
   questions: [],
   status: "loading",

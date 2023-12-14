@@ -1,25 +1,29 @@
+import { motion } from "framer-motion";
+
 export default function Header() {
   return (
     <div className="header p-sm-0 p-1 d-flex justify-content-center gap-sm-5 align-items-center flex-wrap">
-      <img
+      <motion.img
+        initial={{ scale: 0, opacity: 0, rotate: "360deg" }}
+        animate={{ scale: 1, opacity: 1, rotate: "0deg" }}
+        transition={{ type: "spring", stiffness: 50 }}
         className="d-sm-block d-none "
-        style={{ transition: "2s", opacity: 0, rotate: "360deg", scale: "0" }}
         src={require("../logo512.png")}
         alt=""
         width={"140px"}
       />
-      <h1
+      <motion.h1
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ type: "spring", stiffness: 50, duration: 1 }}
         className="m-0 text-center"
         style={{
           fontFamily: "Codystar",
           fontSize: "55px",
-          transition: "2s",
-          scale: "0",
-          opacity: 0,
         }}
       >
         The React Quiz
-      </h1>
+      </motion.h1>
     </div>
   );
 }

@@ -1,6 +1,11 @@
+import { motion } from "framer-motion";
+
 export default function Progress({ questions, progress, points, index }) {
   return (
-    <div
+    <motion.div
+      initial={{ y: "-100%", opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ type: "spring", stiffness: 80 }}
       className="d-flex justify-content-center flex-column align-items-center gap-4 mb-5 mt-5 px-4"
       style={{ color: "rgba(255, 255, 255, 0.787)" }}
     >
@@ -25,6 +30,6 @@ export default function Progress({ questions, progress, points, index }) {
             .reduce((acc, cur) => acc + cur)}
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 }
