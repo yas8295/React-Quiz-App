@@ -42,7 +42,9 @@ export default function Questions({ questions, index, answer, setStates }) {
         <div
           className="d-flex col-12 justify-content-between"
           style={{ maxWidth: "500px" }}
-        ></div>
+        >
+          <Timer></Timer>
+        </div>
       }
     </motion.div>
   );
