@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-export default function Timer({ setStates, answer, questions, index }) {
+export default function Timer({ setStates }) {
   const [seconds, setSeconds] = useState(59);
   const [minuts, setminuts] = useState(3);
 
@@ -22,14 +22,6 @@ export default function Timer({ setStates, answer, questions, index }) {
         {seconds < 10 ? (seconds < 0 ? setSeconds(59) : "0") : null}
         {seconds}
       </button>
-      {answer || answer === 0 ? (
-        <button
-          onClick={(e) => setStates({ type: "next" })}
-          className="next py-4 px-5"
-        >
-          {index + 1 === questions.length ? "Finish" : "Next"}
-        </button>
-      ) : null}
     </>
   );
 }

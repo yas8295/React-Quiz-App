@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import Timer from "./Timer";
+import Timer from "./Timer.js";
 
 export default function Questions({ questions, index, answer, setStates }) {
   return (
@@ -43,7 +43,21 @@ export default function Questions({ questions, index, answer, setStates }) {
           className="d-flex col-12 justify-content-between"
           style={{ maxWidth: "500px" }}
         >
-          <Timer></Timer>
+          <Timer
+            questions={questions}
+            index={index}
+            answer={answer}
+            setStates={setStates}
+          ></Timer>
+
+          {answer || answer === 0 ? (
+            <button
+              onClick={(e) => setStates({ type: "next" })}
+              className="next py-4 px-5"
+            >
+              {index + 1 === questions.length ? "Finish" : "Next"}
+            </button>
+          ) : null}
         </div>
       }
     </motion.div>
